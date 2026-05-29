@@ -1,0 +1,31 @@
+export const onboardingMessages = {
+  pageTitle: 'Set up ContentEngine',
+  stepLabels: ['Platforms', 'Pillars', 'Cadence'],
+  stepCounter: (current: number, total: number) => `Step ${String(current)} of ${String(total)}`,
+  saveError: 'Something went wrong saving your setup. Please try again.',
+  platforms: {
+    title: 'Where do you publish?',
+    subtitle: 'Pick the platforms you actively post on. You can change these later.',
+    submit: 'Continue',
+    submitting: 'Saving…',
+  },
+  pillars: {
+    title: 'What are your content pillars?',
+    subtitle: 'The recurring themes your content ladders up to. Add up to 8.',
+    placeholder: 'e.g. Education',
+    add: 'Add pillar',
+    remove: 'Remove pillar',
+    back: 'Back',
+    submit: 'Continue',
+    submitting: 'Saving…',
+  },
+  cadence: {
+    title: 'Set your weekly cadence',
+    subtitle: 'How many posts per week do you aim for on each platform? 0 means untracked.',
+    perWeek: '/ week',
+    back: 'Back',
+    submit: 'Finish setup',
+    submitting: 'Finishing…',
+    success: 'You’re all set!',
+  },
+} as const;
