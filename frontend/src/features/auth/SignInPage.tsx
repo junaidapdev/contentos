@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Form,
@@ -62,10 +62,13 @@ export function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>{m.title}</CardTitle>
+          {/* h1 used for the page heading. Auth pages render outside <AppShell>, so the
+              route-focus hook doesn't fire here, but a real h1 still matters for the document
+              outline + screen-reader page identification. */}
+          <h1 className="text-2xl font-semibold">{m.title}</h1>
           <CardDescription>{m.subtitle}</CardDescription>
         </CardHeader>
         <CardContent>

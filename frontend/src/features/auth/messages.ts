@@ -34,7 +34,7 @@ export const authMessages = {
   requiredField: 'required',
 } as const;
 
-const ERROR_MESSAGES: Record<ErrorCode, string> = {
+const ERROR_MESSAGES: Partial<Record<ErrorCode, string>> = {
   [ERROR_CODES.NOT_AUTHENTICATED]: 'Incorrect email or password.',
   [ERROR_CODES.CONFLICT]: 'An account with that email already exists. Try signing in instead.',
   [ERROR_CODES.VALIDATION_FAILED]: 'Please check your details and try again.',
@@ -47,5 +47,5 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
 };
 
 export function authErrorMessage(code: ErrorCode): string {
-  return ERROR_MESSAGES[code];
+  return ERROR_MESSAGES[code] ?? 'Something went wrong. Please try again.';
 }

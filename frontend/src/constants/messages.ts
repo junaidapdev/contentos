@@ -10,6 +10,7 @@ export const COMMON_MESSAGES = {
 
 export const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
   { to: ROUTES.DASHBOARD, label: 'Dashboard' },
+  { to: ROUTES.CONTENT_ITEMS, label: 'Content items' },
   { to: ROUTES.CALENDAR, label: 'Calendar' },
   { to: ROUTES.IDEAS, label: 'Ideas' },
   { to: ROUTES.PILLARS, label: 'Pillars' },
@@ -21,6 +22,9 @@ export const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
 export const APP_SHELL_MESSAGES = {
   signingOut: 'Signing out…',
   signOut: 'Sign out',
+  openNav: 'Open navigation menu',
+  closeNav: 'Close navigation menu',
+  navLandmark: 'Main navigation',
 } as const;
 
 export const HOME_MESSAGES = {

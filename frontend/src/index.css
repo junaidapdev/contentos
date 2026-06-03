@@ -133,4 +133,18 @@
   html {
     @apply font-sans;
   }
+
+  /*
+   * Sonner doesn't expose a responsive `position` prop, so the Toaster is mounted with
+   * position="bottom-right" and we shift it to bottom-center on small screens here. The
+   * [data-sonner-toaster] element is sonner's outermost container; transforming + repositioning
+   * it cleanly slides toasts to the bottom-middle. Chunk-12 decisions lock this behavior.
+   */
+  @media (max-width: 639px) {
+    [data-sonner-toaster][data-x-position='right'] {
+      right: 50% !important;
+      transform: translateX(50%) !important;
+      left: auto !important;
+    }
+  }
 }

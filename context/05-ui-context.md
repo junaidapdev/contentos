@@ -77,3 +77,47 @@ Every list has a **designed empty state**, not an afterthought. Each empty state
 - Async controls set `aria-busy` while working.
 - Color contrast meets **WCAG AA**. Status colors must remain distinguishable for color-blind users
   (pair color with text/icon, never color alone).
+
+## Visual Consistency Audit Checklist
+
+Locked in Chunk 12. Apply to every new screen.
+
+- **Spacing.** Tailwind's 4-step rhythm: `gap-2` / `gap-4` / `gap-8` / `gap-16` (and `mt-2`/`mt-4`/etc.).
+  Skip `gap-3` / `gap-5` / `gap-6` unless inheriting from a third-party component.
+- **Button variants.** `default` / `outline` / `ghost` / `destructive`. No new variants.
+- **Heading scale.**
+  - `h1` = `text-2xl font-semibold` (the `<PageHeader>` enforces this).
+  - `h2` = `text-xl font-medium` (detail-page sections).
+  - `h3` = `text-lg font-medium` (sub-sections).
+- **Card padding.** `p-4` (16px) or `p-6` (24px). No `p-5`.
+- **Icon size.** `size-4` (16px) inline in buttons; `size-5` (20px) in headers and section titles.
+- **Toasts.** Bottom-right desktop, bottom-center mobile. Success 3s, error 5s. Max 3 stacked, dismissable.
+- **Empty states.** Max-width ~480px, center-aligned. **Exactly one primary CTA** (or one primary + one
+  secondary for the documented two-CTA case — see `decisions.md`).
+- **Skeleton loaders.** Structural placeholders matching the eventual content shape. A bare spinner is
+  acceptable only for brief route transitions (`FullPageLoader`).
+- **Error states.** Full-panel `<ErrorState>` for query failures; inline destructive `<Alert>` for
+  mutation failures. Network errors get the distinct `<NetworkErrorState>`.
+- **Color is never the sole carrier of meaning.** Status badges include the label; cross-post "Missing"
+  pills have dashed border + label; cadence indicators include arrow/check glyph; calendar chips have
+  `aria-label` carrying status name.
+- **Mobile baseline.** Every screen works at **375px** width without horizontal scroll.
+
+## Feedback Primitives
+
+Locked in Chunk 12. Shared components live in `/frontend/src/components/feedback/`:
+
+- **`<EmptyState>`** — designed empty state with icon, title, body, and primary (+ optional secondary)
+  CTA. Used by every list page.
+- **`<SkeletonList>`** — vertical stack of skeleton rows. Default 5 rows, default `h-[76px]`.
+- **`<SkeletonCard>`** — panel-shaped skeleton with `kind: 'panel' | 'form' | 'chart'`.
+- **`<SkeletonForm>`** — label + input + helper, repeated. Used on detail-page initial fetch.
+- **`<ErrorState>`** — full-panel error treatment with optional retry button + error code.
+- **`<NetworkErrorState>`** — distinct visual treatment for `TypeError: Failed to fetch` style
+  failures (see `lib/network-error.ts`). Retry is always offered.
+- **`<PageHeader>`** — standardized page header with `<h1>`, optional subtitle, optional breadcrumbs,
+  optional right-aligned actions. The `useFocusOnRouteChange` hook focuses this `<h1>` on navigation.
+
+Toast wrapper (`lib/toast.ts`) wraps sonner with project defaults — feature code imports `toast` from
+the wrapper, not directly from `sonner`. Global error boundary (`components/RouteErrorBoundary.tsx`)
+wraps `<Outlet />` inside `<AppShell>`.
