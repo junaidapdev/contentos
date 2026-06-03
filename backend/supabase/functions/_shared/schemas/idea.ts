@@ -15,3 +15,38 @@ export const IdeaSchema = z.object({
 });
 
 export type Idea = z.infer<typeof IdeaSchema>;
+
+// Input shapes (Chunk 05). Empty-string notes from the form are normalized to undefined so the DB
+// stores null, never ''.
+export const IdeaCreateSchema = z.object({
+  title: z.string().trim().min(1, 'Title is required.').max(300, 'Title is too long (max 300).'),
+  notes: z
+    .string()
+    .trim()
+    .max(5000, 'Notes are too long (max 5000).')
+    .optional()
+    .or(z.literal('').transform(() => undefined)),
+  pillar_id: z.uuid().optional(),
+});
+
+export type IdeaCreateInput = z.infer<typeof IdeaCreateSchema>;
+
+// Partial form of the create schema. All fields optional for incremental edits.
+export const IdeaUpdateSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(1, 'Title is required.')
+    .max(300, 'Title is too long (max 300).')
+    .optional(),
+  notes: z
+    .string()
+    .trim()
+    .max(5000, 'Notes are too long (max 5000).')
+    .nullable()
+    .optional()
+    .or(z.literal('').transform(() => null)),
+  pillar_id: z.uuid().nullable().optional(),
+});
+
+export type IdeaUpdateInput = z.infer<typeof IdeaUpdateSchema>;

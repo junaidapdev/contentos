@@ -22,6 +22,8 @@ export const ApiMetaSchema = z.object({
   page_size: z.number().int().positive().optional(),
   total: z.number().int().nonnegative().optional(),
   next_cursor: z.string().nullable().optional(),
+  // Chunk 11: rate-limit retry hint (seconds) carried on RATE_LIMITED error envelopes.
+  reset_seconds: z.number().int().nonnegative().optional(),
 });
 
 export function ApiResponseSchema<T extends z.ZodType>(dataSchema: T) {

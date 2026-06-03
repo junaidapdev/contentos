@@ -8,7 +8,18 @@ import { AppShell } from '@/layouts/AppShell';
 import { SignInPage } from '@/features/auth/SignInPage';
 import { SignUpPage } from '@/features/auth/SignUpPage';
 import { OnboardingPage } from '@/features/onboarding/OnboardingPage';
-import { DashboardPlaceholder } from '@/features/dashboard/DashboardPlaceholder';
+import { DashboardPage } from '@/features/dashboard/DashboardPage';
+import { ContentItemsListPage } from '@/features/content-items/ContentItemsListPage';
+import { NewContentItemPage } from '@/features/content-items/NewContentItemPage';
+import { ContentItemDetailPage } from '@/features/content-items/ContentItemDetailPage';
+import { IdeasListPage } from '@/features/ideas/IdeasListPage';
+import { NewIdeaPage } from '@/features/ideas/NewIdeaPage';
+import { IdeaDetailPage } from '@/features/ideas/IdeaDetailPage';
+import { CalendarPage } from '@/features/calendar/CalendarPage';
+import { BrandContextListPage } from '@/features/brand-context/BrandContextListPage';
+import { NewBrandContextFilePage } from '@/features/brand-context/NewBrandContextFilePage';
+import { ExportPackPage } from '@/features/brand-context/ExportPackPage';
+import { BrandContextDetailPage } from '@/features/brand-context/BrandContextDetailPage';
 import { ROUTES } from '@/constants/routes';
 
 const router = createBrowserRouter([
@@ -26,7 +37,35 @@ const router = createBrowserRouter([
         children: [
           {
             element: <AppShell />,
-            children: [{ path: ROUTES.DASHBOARD, element: <DashboardPlaceholder /> }],
+            children: [
+              { path: ROUTES.DASHBOARD, element: <DashboardPage /> },
+              {
+                path: ROUTES.CONTENT_ITEMS,
+                children: [
+                  { index: true, element: <ContentItemsListPage /> },
+                  { path: 'new', element: <NewContentItemPage /> },
+                  { path: ':id', element: <ContentItemDetailPage /> },
+                ],
+              },
+              {
+                path: ROUTES.IDEAS,
+                children: [
+                  { index: true, element: <IdeasListPage /> },
+                  { path: 'new', element: <NewIdeaPage /> },
+                  { path: ':id', element: <IdeaDetailPage /> },
+                ],
+              },
+              { path: ROUTES.CALENDAR, element: <CalendarPage /> },
+              {
+                path: ROUTES.BRAND_CONTEXT,
+                children: [
+                  { index: true, element: <BrandContextListPage /> },
+                  { path: 'new', element: <NewBrandContextFilePage /> },
+                  { path: 'export', element: <ExportPackPage /> },
+                  { path: ':id', element: <BrandContextDetailPage /> },
+                ],
+              },
+            ],
           },
         ],
       },

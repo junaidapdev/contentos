@@ -43,4 +43,11 @@ Vite + React SPA, Supabase (Postgres + Auth + Edge Functions), deployed independ
 
 ## Status
 
-MVP in development. See `/context/06-progress-tracker.md` for current progress.
+**MVP engineering-complete and pre-launch audited as of 2026-06-03.** Static audit complete; live
+production checks pending the operator's launch run (see the OPERATOR_RUN_PENDING tags in the
+audit document). Once the operator's gate is green, the MVP is launch-ready.
+
+See:
+- `/context/06-progress-tracker.md` — chunk-by-chunk progress.
+- `/context/14-pre-launch-audit.md` — pre-launch audit + sign-off.
+- `/context/13-deployment-runbook.md` — operational guide for deploys, smoke tests, and rollback.

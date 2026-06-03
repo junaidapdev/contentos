@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { toast } from '@/lib/toast';
 
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';

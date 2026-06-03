@@ -38,6 +38,9 @@ pnpm-debug.log*
 backend/supabase/.branches/
 backend/supabase/.temp/
 
+# Vercel (Chunk 13 — `vercel link` / `vercel pull` artifacts)
+.vercel/
+
 # Ad-hoc fix/note files that don't belong in version control
 # Permitted Markdown locations: /context, /feature-specs, root README.md/CLAUDE.md/AGENTS.md
 /*Fix.md
