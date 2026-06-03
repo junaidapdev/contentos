@@ -624,12 +624,11 @@ number for the follow-up.
    `useOnboardingStatus` query during the cadence-step finish handler instead of relying on
    `step === 1` to gate the redirect. Recommended chunk: a "post-launch-bugfix-1".
 
-3. **Sidebar nav links to unimplemented routes.** Symptom: `Pillars`, `Cadence`, `Settings` items
-   in `NAV_ITEMS` 404. Location: `frontend/src/constants/messages.ts:NAV_ITEMS` +
-   `frontend/src/App.tsx`. Recommended fix: either build the pages (each its own chunk) or trim
-   `NAV_ITEMS` to only routes that exist. Recommended chunk: depending on product direction —
-   either build the missing pages (each a feature chunk) or a small "post-launch-bugfix-2" to
-   trim the nav.
+3. **~~Sidebar nav links to unimplemented routes.~~ FIXED on this PR.** `NAV_ITEMS` was trimmed
+   to only Dashboard / Content items / Calendar / Ideas / Brand context. The `ROUTES.PILLARS`,
+   `ROUTES.CADENCE`, `ROUTES.SETTINGS` constants remain in `routes.ts` so future chunks can
+   build dedicated management pages and re-add the nav entries with one line each. Pillars and
+   cadence are still configured during onboarding.
 
 4. **Multi-step relationship cycle prevention is limited.** Symptom: only `parent_id <> child_id`
    is checked at the DB level; A→B→C→A cycles are theoretically constructable. Location:

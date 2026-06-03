@@ -8,15 +8,17 @@ export const COMMON_MESSAGES = {
   required: 'required',
 } as const;
 
+// Sidebar nav. Only includes routes that have a handler in `App.tsx` — listing an
+// unimplemented route here would 404 on click. The `ROUTES.PILLARS`, `ROUTES.CADENCE`, and
+// `ROUTES.SETTINGS` constants stay in `routes.ts` so a future chunk can wire dedicated
+// management pages and re-add the nav entries with one line each. Until then, pillars and
+// cadence are configured during onboarding.
 export const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
   { to: ROUTES.DASHBOARD, label: 'Dashboard' },
   { to: ROUTES.CONTENT_ITEMS, label: 'Content items' },
   { to: ROUTES.CALENDAR, label: 'Calendar' },
   { to: ROUTES.IDEAS, label: 'Ideas' },
-  { to: ROUTES.PILLARS, label: 'Pillars' },
-  { to: ROUTES.CADENCE, label: 'Cadence' },
   { to: ROUTES.BRAND_CONTEXT, label: 'Brand context' },
-  { to: ROUTES.SETTINGS, label: 'Settings' },
 ];
 
 export const APP_SHELL_MESSAGES = {
